@@ -1,0 +1,133 @@
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #142445;
+  color: white;
+  text-align: center;
+  min-width: 100vw;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.gradient-text {
+  background: linear-gradient(90deg, #da5fff, #fe7bc7, rgb(255, 115, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 12ch;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+/* Row-wise stacking */
+.mockup-row {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+/* Base card styling */
+
+.mockup-card {
+  position: relative;
+  width: 280px;
+  height: 400px;
+  /* Increased height */
+  margin: 0 -50px;
+  background: #45084B;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out, z-index 0.3s;
+  cursor: pointer;
+}
+
+/* Middle card is slightly up */
+.mockup-card:nth-child(3) {
+  transform: translateY(-10px);
+}
+
+/* Card moves up when hovered */
+.mockup-card.hovered {
+  transform: scale(1.1) translateY(-30px) !important;
+  z-index: 10 !important;
+}
+
+/* Card design */
+.card-content {
+  background: white;
+  color: black;
+  /* Add this line */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  /* Add padding to prevent text from touching edges */
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+
+
+/* Container for the image */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 180px; /* Adjust as needed */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Make image slightly transparent */
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%); /* Darkens the image for better text visibility */
+}
+
+/* Title overlay on the image */
+.card-title-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+  width: 90%;
+}
+
+/* Card text styling */
+.card-text {
+  padding: 15px;
+  text-align: center;
+  color: black;
+}
+
+
