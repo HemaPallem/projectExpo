@@ -9,8 +9,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2 className="login-title">Login</h2>
+    <div className="auth-container">
+      <h2 className="auth-title">Login</h2>
       <form className="login-form">
         <input
           type="email"
@@ -24,7 +24,7 @@ const Login = () => {
           className="input-box"
           required
         />
-        <button className="login-button">Login</button>
+        <button className="auth-button login-button">Login</button>
       </form>
 
       <div className="divider">or</div>
@@ -35,9 +35,9 @@ const Login = () => {
         Continue with Google
       </button>
 
-      <p className="signup-text">
+      <p className="auth-text">
         Don't have an account?{" "}
-        <Link to="/signup" className="signup-link">
+        <Link to="/signup" className="auth-link">
           Sign Up
         </Link>
       </p>

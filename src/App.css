@@ -1,134 +1,87 @@
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  /* Prevent horizontal overflow */
+/* Global Styles */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --secondary-color: #28a745;
+  --secondary-hover: #218838;
+  --text-color: #333;
+  --bg-color: #f8f9fa;
+  --border-radius: 8px;
+  --box-shadow: 0 0px 20px rgba(0, 0, 0, 0.3);
+  font-family: "Poppins", sans-serif;
 }
 
-
-/*------------------------Login.jsx---------------*/
-/* Center the form container */
-.login-container {
+body {
+  margin: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  text-align: center;
-
+  min-height: 100vh;
+  background: var(--bg-color);
 }
 
-/* Style the form */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  /* Stacks elements vertically */
-  width: 300px;
-  gap: 15px;
-  /* Adds spacing between inputs */
+/* Centered Form Container */
+.auth-container {
+  width: 380px;
+  background: #fff;
   padding: 30px;
-  border: 2px solid black;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
 }
 
-/* Style input fields */
+.auth-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+/* Input Fields */
 .input-box {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Style the button */
-.login-button {
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
+.input-box:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+.auth-button {
+  width: 100%;
+  padding: 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button {
+  background: var(--primary-color);
+  color: white;
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background: var(--primary-hover);
 }
 
-/* Signup text */
-.signup-text {
-  margin-top: 15px;
-}
-
-/* Signup link */
-.signup-link {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.signup-link:hover {
-  text-decoration: underline;
-}
-
-/*---------------------------SignUP.jsx-----------------------*/
-/* Center the form container */
-.signup-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-}
-
-/* Style the form */
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  /* Stacks elements vertically */
-  width: 300px;
-  gap: 15px;
-  /* Adds spacing between inputs */
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 8px;
-}
-
-/* Style input fields */
-.input-box {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-}
-
-/* Style the button */
 .signup-button {
-  padding: 10px;
-  background-color: #28a745;
+  background: var(--secondary-color);
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .signup-button:hover {
-  background-color: #218838;
-}
-
-/* Login text */
-.login-text {
-  margin-top: 15px;
-}
-
-/* Login link */
-.login-link {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.login-link:hover {
-  text-decoration: underline;
+  background: var(--secondary-hover);
 }
 
 /* Divider */
@@ -136,6 +89,18 @@ html {
   margin: 15px 0;
   font-weight: bold;
   color: #666;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  display: inline-block;
+  width: 40%;
+  height: 1px;
+  background: #ccc;
+  vertical-align: middle;
+  margin: 0 10px;
 }
 
 /* Google Sign-In Button */
@@ -144,14 +109,15 @@ html {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 5px;
-  width: 20%;
+  padding: 12px;
+  width: 100%;
   border: 1px solid #ccc;
   background-color: white;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  transition: background 0.3s ease-in-out;
 }
 
 .google-button:hover {
@@ -160,81 +126,31 @@ html {
 
 /* Google Icon */
 .google-icon {
-  width: 35px;
-  height: 35px;
-  border-radius: 20px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
 }
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Sign-up and Login Link */
+.auth-text {
+  margin-top: 15px;
+  font-size: 14px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.auth-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
 }
 
-a:hover {
-  color: #535bf2;
+.auth-link:hover {
+  text-decoration: underline;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+/* Responsive Design */
+@media (max-width: 400px) {
+  .auth-container {
+    width: 90%;
+    padding: 20px;
   }
 }
