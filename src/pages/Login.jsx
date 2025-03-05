@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { auth, provider, signInWithRedirect } from "../firebase";
 
+
 const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithRedirect(auth, provider);

@@ -4,9 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from './pages/Homepage';
 import Login from './pages/Login.jsx';
+import SignUp from './pages/SignUp.jsx';
 import About from './pages/About.jsx';
 import TestimonialAndCTA from './pages/TestimonialAndCTA.jsx';
 import LandingPage from './pages/LandingPage.jsx';
+import './App.css';
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
 
         {/* Navigation Links */}
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        
+
+
         <Route path="/about" element={<About />} />
         <Route path="/testimonials" element={<TestimonialAndCTA />} />
         <Route path="/team" element={<h1>Web team</h1>} />
