@@ -50,7 +50,7 @@ const StudentMode = () => {
 
       <button
         onClick={fetchVideos}
-        className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+        className="px-6 py-2 bg-green-500 text-black rounded-lg hover:bg-green-600"
       >
         {loading ? "Searching..." : "Submit"}
       </button>

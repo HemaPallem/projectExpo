@@ -8,7 +8,7 @@ function ModeSelection() {
   // Navigate to the respective page on click
   const handleModeSelection = (mode) => {
     if (mode === "student") {
-      navigate("/students-creators"); // Navigate to Student Mode Page
+      navigate("/StudentMode"); // Navigate to Student Mode Page
     } else if (mode === "creator") {
       navigate("/creator-mode"); // Navigate to Creator Mode Page
     }
