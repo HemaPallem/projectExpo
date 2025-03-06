@@ -1,4 +1,4 @@
-/* Brand Name Animation */
+
 .navbar-brand {
   font-size: 1.8rem;
   font-weight: bold;
@@ -7,7 +7,7 @@
   position: relative;
   display: inline-block;
   background: linear-gradient(90deg, #da5fff, #fe7bc7, rgb(255, 115, 0));
-    -webkit-background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -17,8 +17,26 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* Mobile Dropdown Styling */
+.navbar-collapse {
+  position: absolute;
+  /* Position the dropdown absolutely */
+  right: 0;
+  /* Align to the right edge of the screen */
+  top: 100%;
+  /* Position below the navbar */
+  background-color: #f8f9fa;
+  /* Light background for dropdown */
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+  width: 200px;
+  /* Set a fixed width for the dropdown */
+  z-index: 1000;
+  /* Ensure it appears above other content */
+}
 
-/* Improved Nav Links Hover Effect */
 .navbar-nav .nav-link {
   font-size: 16px;
   font-weight: 500;
@@ -31,24 +49,25 @@
   padding-bottom: 5px;
   border-bottom: 2px solid #007bff;
   border-radius: 4px;
+    font-size: 16px;
   box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.3);
   transform: scale(1.05);
 }
 
-/* Navbar Button Hover */
-.navbar-nav button {
-  font-size: 14px;
-  padding: 5px 12px;
-  transition: all 0.3s ease-in-out;
+
+/* Logout and Profile Settings in Mobile View */
+.navbar-nav .btn-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: left;
+  width: 100%;
 }
 
-.navbar-nav button:hover {
-  color: white;
-  box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.4);
-  transform: translateY(-2px);
+.navbar-nav .btn-link:hover {
+  background-color: #e9ecef;
 }
 
-/* Profile Icon */
 .profile-icon {
   width: 40px;
   height: 40px;

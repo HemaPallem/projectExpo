@@ -1,4 +1,4 @@
-
+// export default Navbar;
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -10,6 +10,7 @@ import "./Navbar.css";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false); // State for profile dropdown
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992); // Detect mobile view
 
@@ -36,6 +37,10 @@ function Navbar() {
     setIsOpen(false);
   };
 
+  const toggleProfileDropdown = () => {
+    setIsProfileOpen(!isProfileOpen); // Toggle profile dropdown
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light w-100 fixed-top">
       <div className="container-fluid px-4 d-flex justify-content-between align-items-center">
@@ -50,6 +55,8 @@ function Navbar() {
         </button>
 
         {/* Navigation Items */}
+        
+        
         {!isMobile ? (
           // Desktop View - Show Items Inline
           <div className="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
@@ -68,30 +75,49 @@ function Navbar() {
             <button className="btn btn-outline-danger me-2" onClick={handleLogout}>
               Logout
             </button>
-            {/* Profile Icon (instead of text in desktop view) */}
-            <button className="btn profile-btn" onClick={() => handleNavigation("/profile")}>
-              <CgProfile className="profile-icon" />
-            </button>
+            {/* Profile Dropdown */}
+            <div className="dropdown">
+              <button className="btn profile-btn" onClick={toggleProfileDropdown}>
+                <CgProfile className="profile-icon" />
+              </button>
+              {/* Profile Dropdown Menu */}
+              <div className={`dropdown-menu dropdown-menu-end ${isProfileOpen ? "show" : ""}`} style={{ right: 0, left: "auto" }}>
+                <div className="dropdown-item">
+                  <strong>Username:</strong> John Doe
+                </div>
+                <div className="dropdown-item">
+                  <strong>Email:</strong> john.doe@example.com
+                </div>
+                <div className="dropdown-divider"></div>
+                <button className="dropdown-item" >
+                  Profile 
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
           // Mobile View - Dropdown
-          <div className={`dropdown-menu dropdown-menu-end ${isOpen ? "show" : ""}`}>
-            <a className="dropdown-item" href="#" onClick={() => handleNavigation("/about")}>
-              About Us
-            </a>
-            <a className="dropdown-item" href="#" onClick={() => handleNavigation("/testimonials")}>
-              Testimonials
-            </a>
-            <a className="dropdown-item" href="#" onClick={() => handleNavigation("/team")}>
-              Team
-            </a>
-            <a className="dropdown-item fw-bold" href="#" onClick={() => handleNavigation("/profile")}>
-              Profile
-            </a>
-            <div className="dropdown-divider"></div>
-            <button className="dropdown-item text-danger" onClick={handleLogout}>
-              Logout
-            </button>
+          <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
+            <div className="navbar-nav">
+              <a className="nav-link" href="#" onClick={() => handleNavigation("/homepage")}>
+                Home 
+              </a>
+              <a className="nav-link" href="#" onClick={() => handleNavigation("/about")}>
+                About 
+              </a>
+              <a className="nav-link" href="#" onClick={() => handleNavigation("/testimonials")}>
+                Testimonials
+              </a>
+              <a className="nav-link" href="#" onClick={() => handleNavigation("/team")}>
+                Team
+              </a>
+              <button className="nav-link btn btn-link" onClick={handleLogout}>
+                Logout
+              </button>
+              <button className="nav-link btn btn-link">
+                Profile 
+              </button>
+            </div>
           </div>
         )}
       </div>

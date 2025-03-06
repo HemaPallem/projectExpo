@@ -9,6 +9,8 @@ import About from './pages/About.jsx';
 import TestimonialAndCTA from './pages/TestimonialAndCTA.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import './App.css';
+import StudentMode from './pages/StudentMode.jsx';
+import Team from './pages/Team.jsx';
 
 function App() {
   return (
@@ -21,11 +23,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         
-
+        <Route path="/studentMode" element={<StudentMode/>}/>
 
         <Route path="/about" element={<About />} />
         <Route path="/testimonials" element={<TestimonialAndCTA />} />
-        <Route path="/team" element={<h1>Web team</h1>} />
+        <Route path="/team" element={<Team/>} />
 
        
         {/* Pages from the second setup */}
