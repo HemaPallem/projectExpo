@@ -6,28 +6,28 @@ import img1 from "../assets/img1.jpeg"; // Import images
 
 const teamMembers = [
   {
-    name: "Fred Morrison",
-    role: "Accountant-auditor",
+    name: "Arun Kumar ",
+    role: "develpoer",
     image: img1,
   },
   {
-    name: "Ann Smith",
-    role: "Vice President",
+    name: "Sathish Roy77",
+    role: "developer",
     image: img1,
   },
   {
-    name: "Roxie Swanson",
-    role: "Sales Manager",
+    name: "swathi kaviti",
+    role: "developer",
     image: img1,
   },
   {
-    name: "John Doe",
-    role: "Marketing Head",
+    name: "Reshma Bongi",
+    role: "developer",
     image: img1,
   },
   {
-    name: "Emma Brown",
-    role: "HR Manager",
+    name: "Hemalatha Pallem",
+    role: "developer",
     image: img1,
   },
 ];

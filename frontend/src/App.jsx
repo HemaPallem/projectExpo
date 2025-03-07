@@ -12,11 +12,10 @@ import './App.css';
 import StudentMode from './pages/StudentMode.jsx';
 import Team from './pages/Team.jsx';
 import { UserProvider } from "./UserProvider"; // Import the provider
-import StudentMode from './pages/StudentMode.jsx';
 import CreatorMode from './pages/CreatorMode.jsx';
 import AIReviews from './pages/EducationPage.jsx';
-import ExpertInsights from './pages/ExpertInsights.js';
-import StudentCreator from './pages/BackgroundCard.js';
+import ExpertInsights from './pages/ExpertInsights.jsx';
+import StudentCreator from './pages/BackgroundCard.jsx';
 
 function App() {
   return (
@@ -43,7 +42,7 @@ function App() {
         
         <Route path="/students-creators" element={<StudentCreator/>} />
         <Route path="/expert-insights" element={<ExpertInsights/>} />
-        <Route path="/ai-reviews" element={<AIReviews/>} />
+        <Route path="/learn-more" element={<AIReviews/>} />
         <Route path="/homepage" element={<Homepage />} /> 
 
       </Routes>

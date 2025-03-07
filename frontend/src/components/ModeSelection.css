@@ -9,6 +9,7 @@
   background-color: #f4f4f4;
   margin-top: 100px;
   margin-bottom:50px;
+    flex-grow: 1;
 }
 
 /* Flip card styles */

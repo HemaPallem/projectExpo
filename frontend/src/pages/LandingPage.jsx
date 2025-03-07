@@ -8,9 +8,9 @@ const LandingPage = () => {
 
   const cards = [
     { title: "AI-Powered Reviews", text: "Get in-depth AI-driven analysis for your content.", link: "/learn-more" },
-    { title: "Expert Insights", text: "Connect with professionals for valuable feedback.", link: "/explore" },
+    { title: "Expert Insights", text: "Connect with professionals for valuable feedback.", link: "/expert-insights"},
     { title: "Get Started", text: "Enhance your work with AI-driven insights.", link: "/login" },
-    { title: "Students & Creators", text: "Enhance your work with AI-driven insights.", link: "/see-more" }
+    { title: "Students & Creators", text: "Enhance your work with AI-driven insights.", link: "/students-creators" }
   ];
 
   const middleIndex = Math.floor(cards.length / 2);
