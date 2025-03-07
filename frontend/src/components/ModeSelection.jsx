@@ -10,7 +10,7 @@ function ModeSelection() {
     if (mode === "student") {
       navigate("/StudentMode"); // Navigate to Student Mode Page
     } else if (mode === "creator") {
-      navigate("/creator-mode"); // Navigate to Creator Mode Page
+      navigate("/CreatorMode"); // Navigate to Creator Mode Page
     }
   };
 
