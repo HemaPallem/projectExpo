@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import SentimentBarChart from "../components/SentimentBarChart";
+import WordCloud from "../components/WordCloud";
 
 const StudentMode = () => {
   const [topic, setTopic] = useState("");
@@ -15,7 +16,7 @@ const StudentMode = () => {
   
     setLoading(true);
     setError("");
-    setVideos([]); // Clear previous results
+    setVideos([]);
   
     try {
       console.log("Sending request to backend...");
@@ -24,16 +25,16 @@ const StudentMode = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic }),
       });
-  
+
       console.log("Received response:", response);
       
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
       }
-  
+
       const data = await response.json();
-      console.log("Parsed response data:", data);
-  
+      console.log("Parsed response data:", JSON.stringify(data, null, 2)); // ✅ Debugging API response
+
       if (data.error) {
         setError(data.error);
       } else if (data.videos && data.videos.length > 0) {
@@ -49,25 +50,20 @@ const StudentMode = () => {
     setLoading(false);
   };
   
-
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center p-4">
-     <h1 className="fw-bold">
-        Discover the Best Learning Opportunities
-      </h1>
+      <h1 className="fw-bold">Discover the Best Learning Opportunities</h1>
       <p className="text-muted mx-auto w-75">
-        Find high-quality educational content tailored to your interests.  
-        Enter a topic to explore top-rated videos and insightful reviews.
+        Find high-quality educational content tailored to your interests. Enter a topic to explore top-rated videos and insightful reviews.
       </p>
 
       <input
-      type="text"
-      placeholder="Search for topics..."
-      value={topic}
-      onChange={(e) => setTopic(e.target.value)}
-      className="px-4 py-2 border border-black-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-400 focus:border-green-500 outline-none transition-all duration-300 ease-in-out w-80 text-gray-700 placeholder-gray-400"
-    />
-
+        type="text"
+        placeholder="Search for topics..."
+        value={topic}
+        onChange={(e) => setTopic(e.target.value)}
+        className="px-4 py-2 border border-black-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-400 focus:border-green-500 outline-none transition-all duration-300 ease-in-out w-80 text-gray-700 placeholder-gray-400"
+      />
 
       <button
         onClick={fetchVideos}
@@ -82,21 +78,15 @@ const StudentMode = () => {
       <div className="mt-6 w-full max-w-lg">
         {videos.length > 0 && <h2 className="text-xl font-bold mb-4">Results:</h2>}
         {videos.map((video, index) => (
-          <div key={video.videoId || index} className="flex flex-col items-center mb-4 border p-2 rounded-md">
+          <div key={video.videoId || index} className="flex flex-col items-center mb-4 border p-4 rounded-md bg-white shadow-lg">
             <img src={video.thumbnail} alt={video.title} className="w-32 h-32 rounded-md mb-2" />
-            <a
-              href={`https://www.youtube.com/watch?v=${video.videoId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline text-lg"
-            >
+            <a href={`https://www.youtube.com/watch?v=${video.videoId}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline text-lg">
               {video.title}
             </a>
-            <div className="mt-2">
-              <p className="text-sm text-green-600">Positive: {video.sentiment.positive}%</p>
-              <p className="text-sm text-gray-600">Neutral: {video.sentiment.neutral}%</p>
-              <p className="text-sm text-red-600">Negative: {video.sentiment.negative}%</p>
+            <div className="w-full mt-4">
+              <SentimentBarChart sentimentData={video.sentiment} />
             </div>
+            {video.wordCloud?.length ? <WordCloud data={video.wordCloud} /> : <p className="text-gray-500">No word cloud data available.</p>}
           </div>
         ))}
       </div>

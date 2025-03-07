@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import WordCloud from "../components/WordCloud";
+import SentimentBarChart from "../components/SentimentBarChart";
 
 const CreatorMode = () => {
   const [videoUrl, setVideoUrl] = useState("");
@@ -40,11 +42,9 @@ const CreatorMode = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-center p-4">
-      <h1 className="fw-bold">Analyze YouTube Video Comments</h1>
-      <p className="text-muted mx-auto w-75">
-        Enter a YouTube video URL to get sentiment analysis on its comments.
-      </p>
+    <div className="flex flex-col items-center justify-center min-h-screen text-center p-4 bg-gray-100">
+      <h1 className="text-2xl font-bold">Analyze YouTube Video Comments</h1>
+      <p className="text-gray-600 mt-2">Enter a YouTube video URL to get sentiment analysis on its comments.</p>
 
       <input
         type="text"
@@ -55,7 +55,7 @@ const CreatorMode = () => {
       />
       <button
         onClick={analyzeComments}
-        className={`px-6 py-2 rounded-lg ${loading ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"}`}
+        className={`px-6 py-2 text-black rounded-lg ${loading ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"}`}
         disabled={loading}
       >
         {loading ? "Analyzing..." : "Analyze Comments"}
@@ -64,14 +64,18 @@ const CreatorMode = () => {
       {error && <p className="text-red-500 mt-4">{error}</p>}
 
       {commentAnalysis && (
-        <div className="mt-6 w-full max-w-lg border p-4 rounded-lg">
+        <div className="mt-6 w-full max-w-lg border p-4 rounded-lg bg-white shadow-lg min-h-[300px]">
           <h2 className="text-xl font-bold mb-2">Comment Sentiment Analysis</h2>
           <p className="text-sm">Total Comments Analyzed: {commentAnalysis.total_comments}</p>
-          <div className="mt-2">
-            <p className="text-sm text-green-600">Positive: {commentAnalysis.sentiment.positive}%</p>
-            <p className="text-sm text-gray-600">Neutral: {commentAnalysis.sentiment.neutral}%</p>
-            <p className="text-sm text-red-600">Negative: {commentAnalysis.sentiment.negative}%</p>
-          </div>
+
+          {/* ✅ Log sentiment data */}
+          {console.log("Sentiment Data:", commentAnalysis.sentiment)}
+
+          {/* ✅ Sentiment Bar Chart */}
+          {commentAnalysis.sentiment && <SentimentBarChart sentimentData={commentAnalysis.sentiment} />}
+
+          <h3 className="mt-4 font-bold">Word Cloud</h3>
+          {commentAnalysis.wordCloud && <WordCloud data={commentAnalysis.wordCloud} />}
         </div>
       )}
     </div>
@@ -79,3 +83,4 @@ const CreatorMode = () => {
 };
 
 export default CreatorMode;
+
