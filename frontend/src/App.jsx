@@ -14,6 +14,9 @@ import Team from './pages/Team.jsx';
 import { UserProvider } from "./UserProvider"; // Import the provider
 import StudentMode from './pages/StudentMode.jsx';
 import CreatorMode from './pages/CreatorMode.jsx';
+import AIReviews from './pages/EducationPage.jsx';
+import ExpertInsights from './pages/ExpertInsights.js';
+import StudentCreator from './pages/BackgroundCard.js';
 
 function App() {
   return (
@@ -37,12 +40,11 @@ function App() {
        
         {/* Pages from the second setup */}
         <Route path="/get-started" element={<Homepage />} />
-        <Route path="/students-creators" element={<h1>Students & Creators Page</h1>} />
-        <Route path="/expert-insights" element={<h1>Expert Insights Page</h1>} />
-        <Route path="/ai-reviews" element={<h1>AI Powered Reviews Page</h1>} />
+        
+        <Route path="/students-creators" element={<StudentCreator/>} />
+        <Route path="/expert-insights" element={<ExpertInsights/>} />
+        <Route path="/ai-reviews" element={<AIReviews/>} />
         <Route path="/homepage" element={<Homepage />} /> 
-        <Route path="/students-mode" element={<h1>Student mode page</h1>} />
-        <Route path="/creator-mode" element={<h1>Creator Mode Page</h1>} />
 
       </Routes>
       </Router>
