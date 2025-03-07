@@ -39,6 +39,16 @@ const StudentMode = () => {
         setError(data.error);
       } else if (data.videos && data.videos.length > 0) {
         setVideos(data.videos);
+
+         // Store searched topic in DB
+         const user = JSON.parse(localStorage.getItem("user")); // Get user info
+         if (user) {
+             await fetch("http://localhost:5000/store-topic", {
+                 method: "POST",
+                 headers: { "Content-Type": "application/json" },
+                 body: JSON.stringify({ email: user.email, topic }),
+             });
+         }
       } else {
         setError("No videos found for this topic.");
       }
@@ -49,7 +59,9 @@ const StudentMode = () => {
   
     setLoading(false);
   };
-  
+  console.log("User data from localStorage:", localStorage.getItem("user"));
+  console.log("Storing topic in history:", topic);
+
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center p-4">
       <h1 className="fw-bold">Discover the Best Learning Opportunities</h1>
@@ -90,6 +102,7 @@ const StudentMode = () => {
           </div>
         ))}
       </div>
+      
     </div>
   );
 };

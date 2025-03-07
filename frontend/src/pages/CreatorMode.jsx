@@ -34,6 +34,16 @@ const CreatorMode = () => {
         setError(data.error);
       } else {
         setCommentAnalysis(data);
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+          await fetch("http://localhost:5000/store-creator-url", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: user.email, video_url: videoUrl }),
+          });
+      }
+      
       }
     } catch (err) {
       setError(`Failed to analyze comments: ${err.message}`);

@@ -20,7 +20,7 @@ app.use(
     credentials: true,
   })
 );
-
+app.options("*", cors());
 app.use(express.json());
 
 // Password strength validation
@@ -67,7 +67,9 @@ app.post("/signup", async (req, res) => {
     const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({ message: "User registered successfully",
+                            user: { name: newUser.name, email: newUser.email } 
+                          });
   } catch (error) {
     console.error("Signup error:", error);
     res.status(500).json({ error: "Internal Server Error", details: error.message });
@@ -118,6 +120,80 @@ app.post("/google-signin", async (req, res) => {
   } catch (error) {
     console.error("Google Sign-In error:", error);
     res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+});
+
+
+app.post("/store-topic", async (req, res) => {
+  try {
+    const { email, topic } = req.body;
+    console.log("Storing topic for:", email, "Topic:", topic); // Debug log
+
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    if (!user.searchHistory.includes(topic)) {
+      user.searchHistory.push(topic);
+      await user.save();
+    }
+
+    res.status(200).json({ message: "Topic stored successfully", searchHistory: user.searchHistory });
+  } catch (error) {
+    console.error("Error storing topic:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+app.post("/get-search-history", async (req, res) => {
+  try {
+    const { email } = req.body;
+    console.log("Fetching search history for:", email); // Debug log
+
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    console.log("Search History:", user.searchHistory); // Debug log
+    res.status(200).json({ searchHistory: user.searchHistory });
+  } catch (error) {
+    console.error("Error fetching search history:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/store-creator-url", async (req, res) => {
+  try {
+      const { email, video_url } = req.body;
+      console.log("Storing video URL for:", email, "URL:", video_url);
+
+      const user = await User.findOne({ email });
+      if (!user) return res.status(404).json({ error: "User not found" });
+
+      if (!user.creatorHistory.includes(video_url)) {
+          user.creatorHistory.push(video_url);
+          await user.save();
+      }
+
+      res.status(200).json({ message: "Video URL stored successfully", creatorHistory: user.creatorHistory });
+  } catch (error) {
+      console.error("Error storing video URL:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/get-creator-history", async (req, res) => {
+  try {
+      const { email } = req.body;
+      console.log("Fetching creator history for:", email);
+
+      const user = await User.findOne({ email });
+      if (!user) return res.status(404).json({ error: "User not found" });
+
+      console.log("Creator History:", user.creatorHistory);
+      res.status(200).json({ creatorHistory: user.creatorHistory });
+  } catch (error) {
+      console.error("Error fetching creator history:", error);
+      res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

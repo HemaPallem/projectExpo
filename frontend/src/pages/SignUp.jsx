@@ -446,6 +446,11 @@
 
 // export default SignUp;
 
+
+
+
+
+
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext"; // Import the UserContext
@@ -551,9 +556,9 @@ const SignUp = () => {
       const data = await response.json();
       if (response.ok) {
         alert("Signup successful");
-        setUser(data.user); // Update user data in context
-        setFormData({ name: "", email: "", password: "" }); // Clear form fields
-        navigate("/homepage"); // Redirect to homepage
+        setUser(data.user); // Update UserContext
+        localStorage.setItem("user", JSON.stringify(data.user)); // Store in localStorage
+        navigate("/homepage");
       } else {
         setError(data.error || "Signup failed");
       }
