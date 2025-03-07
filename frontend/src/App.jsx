@@ -12,7 +12,8 @@ import './App.css';
 import StudentMode from './pages/StudentMode.jsx';
 import Team from './pages/Team.jsx';
 import { UserProvider } from "./UserProvider"; // Import the provider
-
+import StudentMode from './pages/StudentMode.jsx';
+import CreatorMode from './pages/CreatorMode.jsx';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         
         <Route path="/studentMode" element={<StudentMode/>}/>
+        <Route path="/creatorMode" element={<CreatorMode/>}/>
 
         <Route path="/about" element={<About />} />
         <Route path="/testimonials" element={<TestimonialAndCTA />} />
