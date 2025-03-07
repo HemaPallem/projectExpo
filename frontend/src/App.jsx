@@ -11,9 +11,12 @@ import LandingPage from './pages/LandingPage.jsx';
 import './App.css';
 import StudentMode from './pages/StudentMode.jsx';
 import Team from './pages/Team.jsx';
+import { UserProvider } from "./UserProvider"; // Import the provider
+
 
 function App() {
   return (
+    <UserProvider>
     <Router>
       <Routes>
         {/* Landing Page */}
@@ -40,7 +43,9 @@ function App() {
         <Route path="/creator-mode" element={<h1>Creator Mode Page</h1>} />
 
       </Routes>
-    </Router>
+      </Router>
+      </UserProvider>
+
   );
 }
 

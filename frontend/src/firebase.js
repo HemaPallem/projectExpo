@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { getAuth, GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
   
@@ -16,6 +16,5 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export { auth, provider, signInWithRedirect };  // ✅ Make sure signInWithRedirect is exported
-
+export { auth, provider,signInWithPopup };  // ✅ Make sure signInWithRedirect is exported
 

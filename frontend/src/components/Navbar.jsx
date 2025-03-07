@@ -1,5 +1,5 @@
-// export default Navbar;
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "../App.css";
@@ -7,12 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg"; // Profile icon
 import "./Navbar.css";
+import { UserContext } from "../UserContext"; // Import the UserContext
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false); // State for profile dropdown
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992); // Detect mobile view
+
+  const { user, setUser } = useContext(UserContext); // Access user data from UserContext
 
   // Close dropdown when resizing to a larger screen & detect mobile view
   useEffect(() => {
@@ -33,6 +36,8 @@ function Navbar() {
 
   const handleLogout = () => {
     console.log("User logged out");
+    setUser(null); // Clear user context
+    localStorage.removeItem("user"); // Remove user data from localStorage
     navigate("/");
     setIsOpen(false);
   };
@@ -55,16 +60,14 @@ function Navbar() {
         </button>
 
         {/* Navigation Items */}
-        
-        
         {!isMobile ? (
           // Desktop View - Show Items Inline
           <div className="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
             <a className="nav-link" href="#" onClick={() => handleNavigation("/homepage")}>
-              Home 
+              Home
             </a>
             <a className="nav-link" href="#" onClick={() => handleNavigation("/about")}>
-              About 
+              About
             </a>
             <a className="nav-link" href="#" onClick={() => handleNavigation("/testimonials")}>
               Testimonials
@@ -81,17 +84,26 @@ function Navbar() {
                 <CgProfile className="profile-icon" />
               </button>
               {/* Profile Dropdown Menu */}
-              <div className={`dropdown-menu dropdown-menu-end ${isProfileOpen ? "show" : ""}`} style={{ right: 0, left: "auto" }}>
-                <div className="dropdown-item">
-                  <strong>Username:</strong> John Doe
-                </div>
-                <div className="dropdown-item">
-                  <strong>Email:</strong> john.doe@example.com
-                </div>
-                <div className="dropdown-divider"></div>
-                <button className="dropdown-item" >
-                  Profile 
-                </button>
+              <div
+                className={`dropdown-menu dropdown-menu-end ${isProfileOpen ? "show" : ""}`}
+                style={{ right: 0, left: "auto" }}
+              >
+                {user ? (
+                  <>
+                    <div className="dropdown-item">
+                      <strong>Username:</strong> {user.name}
+                    </div>
+                    <div className="dropdown-item">
+                      <strong>Email:</strong> {user.email}
+                    </div>
+                    <div className="dropdown-divider"></div>
+                    <button className="dropdown-item" onClick={() => handleNavigation("/profile")}>
+                      Profile
+                    </button>
+                  </>
+                ) : (
+                  <div className="dropdown-item">Not logged in</div>
+                )}
               </div>
             </div>
           </div>
@@ -100,10 +112,10 @@ function Navbar() {
           <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
             <div className="navbar-nav">
               <a className="nav-link" href="#" onClick={() => handleNavigation("/homepage")}>
-                Home 
+                Home
               </a>
               <a className="nav-link" href="#" onClick={() => handleNavigation("/about")}>
-                About 
+                About
               </a>
               <a className="nav-link" href="#" onClick={() => handleNavigation("/testimonials")}>
                 Testimonials
@@ -114,9 +126,34 @@ function Navbar() {
               <button className="nav-link btn btn-link" onClick={handleLogout}>
                 Logout
               </button>
-              <button className="nav-link btn btn-link">
-                Profile 
-              </button>
+              {/* Profile Dropdown in Mobile View */}
+              <div className="dropdown">
+                <button className="nav-link btn btn-link" onClick={toggleProfileDropdown}>
+                  Profile
+                </button>
+                {/* Profile Dropdown Menu */}
+                <div
+                  className={`dropdown-menu ${isProfileOpen ? "show" : ""}`}
+                  style={{ right: 0, left: "auto" }}
+                >
+                  {user ? (
+                    <>
+                      <div className="dropdown-item">
+                        <strong>Username:</strong> {user.name}
+                      </div>
+                      <div className="dropdown-item">
+                        <strong>Email:</strong> {user.email}
+                      </div>
+                      <div className="dropdown-divider"></div>
+                      <button className="dropdown-item" onClick={() => handleNavigation("/profile")}>
+                        Profile
+                      </button>
+                    </>
+                  ) : (
+                    <div className="dropdown-item">Not logged in</div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         )}
