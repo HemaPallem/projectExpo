@@ -1,0 +1,31 @@
+.background-container {
+  background-image: url("../assets/hi.jpg");
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the background */
+  background-repeat: repeat; /* Repeats the image */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Move card to the left */
+  padding-left: 5%; /* Adjust spacing from the left */
+}
+
+.content-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  width: 35%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 23px;
+  color: #333;
+}
