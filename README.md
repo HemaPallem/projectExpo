@@ -55,12 +55,6 @@
 
 ---
 
-## 📂 Project Structure
-
-ReviewXpertAI/ ├── backend/ │ ├── app.py │ ├── models/ │ ├── routes/ │ └── utils/ ├── frontend/ │ ├── src/ │ │ ├── components/ │ │ ├── pages/ │ │ ├── services/ │ │ └── App.js ├── README.md └──
-
----
-
 ## Future Enhancements
 - Personalized video recommendations.
 - Advanced analytics dashboard for creators.
