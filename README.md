@@ -39,18 +39,18 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React.js, Tailwind CSS
+- **Frontend:** React.js, Bootstrap
 - **Backend:** Flask (Python)
 - **Database:** MongoDB
 - **APIs:** YouTube Data API
-- **Libraries & Tools:** NLTK, SpaCy, Scikit-learn, Axios, Postman
+- **Libraries & Tools:** NLTK, SpaCy, Scikit-learn, Postman
 
 ---
 
 ## 🧠 AI & Machine Learning
 
 - Sentiment Analysis on YouTube comments.
-- Natural Language Processing techniques: tokenization, stopword removal, lemmatization.
+- Natural Language Processing techniques: tokenization, lemmatization.
 - Real-time scoring and ranking of videos based on sentiment polarity.
 
 ---
@@ -59,7 +59,6 @@
 - Personalized video recommendations.
 - Advanced analytics dashboard for creators.
 - Support for multilingual sentiment analysis.
-- Cloud deployment for scalability.
-
+-Extend to learning platforms
 ---
 
